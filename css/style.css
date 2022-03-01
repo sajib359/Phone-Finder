@@ -2,3 +2,16 @@
     font-family: 'Poppins', sans-serif;
     font-style:italic;
 }
+
+.result-title{
+    background-color:black;
+    border: 5px solid green;
+    border-radius: 10px;
+    text-align: center;
+    font-size:xx-large;
+    font-weight: 800;
+    color: greenyellow;
+    margin-top: 20px;
+    /* padding-top: 10px;
+    padding-bottom: 10px; */
+}
