@@ -33,18 +33,18 @@ const displaySearch=phones=>{
         div.classList.add('phones')
 
         div.innerHTML=`
-        <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mt-6">
+        <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md mt-6">
         <a href="#">
             <img  class="rounded-t-lg mx-auto pt-6 " src="${phone.image}" alt="" />
         </a>
         <div class="p-5">
             
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">${phone.phone_name}</h5>
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">${phone.phone_name}</h5>
                 <div>
-                <h6 class="mb-2 text-xl  tracking-tight text-gray-900 dark:text-white">Band: ${phone.brand}</h6>
+                <h6 class="mb-2 text-xl  tracking-tight text-gray-900">Band: ${phone.brand}</h6>
                 </div>
         
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+            <p class="mb-3 font-normal text-gray-700">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
 
             <button onclick="loadId('${phone.slug}')" class="bg-cyan-500 hover:bg-cyan-600 p-3 rounded">More Details</button>
         </div>
@@ -66,22 +66,33 @@ const loadId = phoneId=>{
 const moreDetails =finderId=>{
     console.log(finderId);
     const detailsResult = document.getElementById('details');
-    detailsResult.innerHTML=`<div class="max-w-xl bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mt-6">
+    detailsResult.innerHTML=`<div class="max-w-xl bg-white rounded-lg border border-gray-200 shadow-md  mt-6">
     <a href="#">
         <img  class="rounded-t-lg mx-auto pt-6 " src="${finderId.image}" alt="" />
     </a>
     <div class="p-5">
         
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Band Name :${finderId.name}</h5>
-            <div class="flex">
-            <h6 class="mb-2 text-l  tracking-tight text-gray-900 dark:text-white">Band : ${finderId.brand} </h6>
-            <p class="mb-2   tracking-tight text-gray-900 dark:text-blue font-mono">${finderId.releaseDate} </p>
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Band Name :${finderId.name}</h5>
+            <div  class="flex space-x-8 ...">
+            <h6 class="mb-2 text-l  tracking-tight text-gray-900 ">Band : ${finderId.brand} </h6>
+            <p class="mb-2   tracking-tight text-gray-900 font-mono">${finderId.releaseDate} </p>
             
             </div>
-            <div class="bg-sky-200 ">
-            <span>Main Feature: </span>
+            <div class="bg-sky-200 p-6 ">
+            <span class="font-bold">Main Feature: </span>
             <ul class="">
-            <li>Storage : ${finderId.mainFeatures.storage}</li>
+            <li> <span class="font-bold">Storage : </span>${finderId.mainFeatures.storage}</li>
+            <li><span class="font-bold">Display Size :</span> ${finderId.mainFeatures.displaySize}</li>
+            <li><span class="font-bold">ChipSet :</span> ${finderId.mainFeatures.chipSet}</li>
+            <li><span class="font-bold">memory :</span> ${finderId.mainFeatures.memory}</li>
+            <li> <span class="font-bold">sensors : </span>${finderId.mainFeatures.sensors}</li>
+            </ul>
+            </div>
+            
+            <div class="bg-zinc-300  p-6">
+            <span class="font-bold"> Other Inrmation: </span>
+            <ul class="">
+            <li><span>Wlan : </span> ${finderId.others.WLAN}</li>
             <li>Display Size : ${finderId.mainFeatures.displaySize}</li>
             <li>ChipSet : ${finderId.mainFeatures.chipSet}</li>
             <li>memory : ${finderId.mainFeatures.memory}</li>
