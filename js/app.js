@@ -11,7 +11,7 @@ const loadData = ()=>{
 
     fetch(url)
     .then(res=> res.json())
-    .then(data =>displaySearch(data.data))
+    .then(data =>displaySearch(data.data.slice(0,20)))
 }
 const displaySearch=phones=>{
     console.log(phones);
@@ -92,16 +92,16 @@ const moreDetails =finderId=>{
             <div class="bg-zinc-300  p-6">
             <span class="font-bold"> Other Inrmation: </span>
             <ul class="">
-            <li><span>Wlan : </span> ${finderId.others.WLAN}</li>
-            <li>Display Size : ${finderId.mainFeatures.displaySize}</li>
-            <li>ChipSet : ${finderId.mainFeatures.chipSet}</li>
-            <li>memory : ${finderId.mainFeatures.memory}</li>
-            <li>sensors : ${finderId.mainFeatures.sensors}</li>
+            <li><span class="font-bold">Wlan : </span> ${finderId.others.WLAN}</li>
+            <li><span class="font-bold">Bluetooth : </span> : ${finderId.others.Bluetooth}</li>
+            <li><span class="font-bold"> GPS : </span> : ${finderId.others.GPS}</li>
+            <li><span class="font-bold"> NFC : </span> : ${finderId.others.NFC}</li>
+            <li><span class="font-bold">Radio : </span> ${finderId.others.Radio}</li>
             </ul>
             </div>
             
 
-            <a class="bg-cyan-500 hover:bg-cyan-600 p-3 rounded mt-6" href="https://www.amazon.com/s?k=mobile&rh=n%3A7072561011&dc&crid=1NAE47BMXZ93M&qid=1646136075&rnid=2941120011&sprefix=mobile%2Caps%2C496&ref=sr_nr_n_3">Buy Now</a>
+           <button class="bg-cyan-500 hover:bg-cyan-600 p-3 rounded mt-4"><a target=_blank href="https://www.amazon.com/s?k=mobile&rh=n%3A7072561011&dc&crid=1NAE47BMXZ93M&qid=1646136075&rnid=2941120011&sprefix=mobile%2Caps%2C496&ref=sr_nr_n_3">Buy Now</a></button> 
     </div>
 </div>
 `;
