@@ -90,7 +90,7 @@ const moreDetails =finderId=>{
             </div>
             
 
-        <button  class="bg-cyan-500 hover:bg-cyan-600 p-3 rounded">More Details</button>
+            <a class="bg-cyan-500 hover:bg-cyan-600 p-3 rounded mt-6" href="https://www.amazon.com/s?k=mobile&rh=n%3A7072561011&dc&crid=1NAE47BMXZ93M&qid=1646136075&rnid=2941120011&sprefix=mobile%2Caps%2C496&ref=sr_nr_n_3">Buy Now</a>
     </div>
 </div>
 `;
