@@ -60,9 +60,40 @@ const loadId = phoneId=>{
 
     fetch(url)
     .then(res=>res.json())
-    .then(data=>moreDetails(data))
+    .then(data=>moreDetails(data.data))
 }
 
 const moreDetails =finderId=>{
     console.log(finderId);
+    const detailsResult = document.getElementById('details');
+    detailsResult.innerHTML=`<div class="max-w-xl bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mt-6">
+    <a href="#">
+        <img  class="rounded-t-lg mx-auto pt-6 " src="${finderId.image}" alt="" />
+    </a>
+    <div class="p-5">
+        
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Band Name :${finderId.name}</h5>
+            <div class="flex">
+            <h6 class="mb-2 text-l  tracking-tight text-gray-900 dark:text-white">Band : ${finderId.brand} </h6>
+            <p class="mb-2   tracking-tight text-gray-900 dark:text-blue font-mono">${finderId.releaseDate} </p>
+            
+            </div>
+            <div class="bg-sky-200 ">
+            <span>Main Feature: </span>
+            <ul class="">
+            <li>Storage : ${finderId.mainFeatures.storage}</li>
+            <li>Display Size : ${finderId.mainFeatures.displaySize}</li>
+            <li>ChipSet : ${finderId.mainFeatures.chipSet}</li>
+            <li>memory : ${finderId.mainFeatures.memory}</li>
+            <li>sensors : ${finderId.mainFeatures.sensors}</li>
+            </ul>
+            </div>
+            
+
+        <button  class="bg-cyan-500 hover:bg-cyan-600 p-3 rounded">More Details</button>
+    </div>
+</div>
+`;
+
+
 }
