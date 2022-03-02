@@ -81,6 +81,9 @@ const loadId = phoneId=>{
 
 const moreDetails =finderId=>{
     console.log(finderId);
+    document.getElementById("details").scrollIntoView({
+        behavior: "smooth"
+    });
     const detailsResult = document.getElementById('details');
     detailsResult.textContent='';
     detailsResult.innerHTML=`<div class="max-w-xl bg-white rounded-lg border border-gray-200 shadow-md  mt-6">
@@ -108,10 +111,10 @@ const moreDetails =finderId=>{
             
             <div class="bg-zinc-300  p-6">
             <span class="font-bold"> Other Inrmation: </span>
-            <ul class="">
-            <li><span class="font-bold">Wlan : </span> ${finderId.others.WLAN}</li>
-            <li><span class="font-bold">Bluetooth : </span> : ${finderId.others.Bluetooth}</li>
-            <li><span class="font-bold"> GPS : </span> : ${finderId.others.GPS}</li>
+            <ul class="break-all">
+            <li class="break-all"><span class="font-bold">Wlan : </span> ${finderId.others.WLAN}</li>
+            <li class="break-all"><span class="font-bold">Bluetooth : </span> : ${finderId.others.Bluetooth}</li>
+            <li class="break-all"><span class="font-bold"> GPS : </span> : ${finderId.others.GPS}</li>
             <li><span class="font-bold"> NFC : </span> : ${finderId.others.NFC}</li>
             <li><span class="font-bold">Radio : </span> ${finderId.others.Radio}</li>
             </ul>
