@@ -16,13 +16,14 @@ const loadData = ()=>{
         const url =`https://openapi.programming-hero.com/api/phones?search=${searchText}`
         fetch(url)
         .then(res=> res.json())
-        .then(data =>displaySearch(data.data.slice(0,20)))
+        .then(data =>displaySearch(data))
        }
     
 }
 //Displayed data Our site
 
-const displaySearch=phones=>{
+const displaySearch=phonesx=>{
+   let phones = phonesx.data.slice(0,20);
     console.log(phones);
 
 // searching header code 
@@ -30,7 +31,7 @@ const displaySearch=phones=>{
     title.textContent='';
     const h2 = document.createElement('h2');
     h2.classList.add('result-title');
-    h2.innerText='Your Searching Result are Displayed'
+    h2.innerText='Your Searching Result Are Displayed'
     title.appendChild(h2);
     
 // displayed All Phone are you searching
@@ -38,7 +39,8 @@ const displaySearch=phones=>{
     let searchDisplay = document.getElementById('display-searchResult');
     searchDisplay.textContent='';
      console.log(searchDisplay);
-
+     const detailsResult = document.getElementById('details');
+     detailsResult.textContent='';
    
     phones.forEach(phone => {
     console.log(phone);
@@ -59,7 +61,7 @@ const displaySearch=phones=>{
                 <h6 class="mb-2 text-xl  tracking-tight text-gray-900">Band: ${phone.brand}</h6>
                 </div>
         
-            <p class="mb-3 font-normal text-gray-700">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+            <p class="mb-3 font-normal text-gray-700">Here are the biggest enterprise technology acquisitions of 2022 so far, in reverse chronological order.</p>
 
             <button onclick="loadId('${phone.slug}')" class="bg-cyan-500 hover:bg-cyan-600 p-3 rounded">More Details</button>
         </div>
@@ -68,6 +70,22 @@ const displaySearch=phones=>{
 
             searchDisplay.appendChild(div);
     });
+    //release date condition
+ // adding load more button if any more item left to load 
+ const moreDiv = document.getElementById('loadMore');
+ console.log('jhghgv')
+ console.log(phonesx);
+ if (phonesx.data.slice(20).length !== 0) {
+     const lengthofArr = phonesx.data.length;
+     restPhone = phonesx.data.slice(21, lengthofArr);
+     const loadButton = document.createElement('div');
+     loadButton.classList.add("flex");
+     loadButton.classList.add("justify-center");
+     loadButton.innerHTML = `<button type="button" onclick ="loadAll(restPhone)"
+     class="py-2.5 mt-6 px-5 mr-2 mb-2 w-3/5 text-sm font-bold text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700">Load More</button>
+     `
+     moreDiv.appendChild(loadButton);
+ }
 }
 // loading data using Id from API 
 const loadId = phoneId=>{
@@ -87,9 +105,7 @@ const moreDetails =finderId=>{
     const detailsResult = document.getElementById('details');
     detailsResult.textContent='';
     detailsResult.innerHTML=`<div class="max-w-xl bg-white rounded-lg border border-gray-200 shadow-md  mt-6">
-    <a href="#">
         <img  class="rounded-t-lg mx-auto pt-6 " src="${finderId.image}" alt="" />
-    </a>
     <div class="p-5">
         
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Band Name : ${finderId.name}</h5>
@@ -128,7 +144,20 @@ const moreDetails =finderId=>{
 
 }
 
-//release date condition
+
+
+// else {
+//  moreDiv.textContent = '';
+//  resultDiv.textContent = '';
+//  noPhoneDiv.textContent = '';
+//  detailsDiv.textContent = '';
+//  morePhone.textContent ='';
+//  const div = document.createElement('div');
+//  div.innerHTML = `
+//  <div class="bg-red-700"><h1 class="text-center text-white font-bold text-3xl">No Phone Found</h1></div>
+//  `
+//  noPhoneDiv.appendChild(div);
+// }
 
 const releaseInfo = release =>{
     if(release==undefined || release== null || release.lenght == 0){
@@ -137,5 +166,35 @@ const releaseInfo = release =>{
     else{
         return release;
     }
+}
+
+// loading rest of the phone 
+const loadAll = restPhone => {
+    const moreDiv = document.getElementById('loadMore');
+    moreDiv.textContent = '';
+    const morePhone = document.getElementById('MorePhone');
+    restPhone.forEach(phone => {
+        const div = document.createElement('div');
+        div.innerHTML=`
+        <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md mt-6">
+        <a href="#">
+            <img  class="rounded-t-lg mx-auto pt-6 " src="${phone.image}" alt="" />
+        </a>
+        <div class="p-5">
+            
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">${phone.phone_name}</h5>
+                <div>
+                <h6 class="mb-2 text-xl  tracking-tight text-gray-900">Band: ${phone.brand}</h6>
+                </div>
+        
+            <p class="mb-3 font-normal text-gray-700">Here are the biggest enterprise technology acquisitions of 2022 so far, in reverse chronological order.</p>
+
+            <button onclick="loadId('${phone.slug}')" class="bg-cyan-500 hover:bg-cyan-600 p-3 rounded">More Details</button>
+        </div>
+    </div>
+`;
+
+        morePhone.appendChild(div);
+    })
 }
 
