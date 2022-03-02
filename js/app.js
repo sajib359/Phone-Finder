@@ -73,8 +73,10 @@ const displaySearch=phonesx=>{
     //release date condition
  // adding load more button if any more item left to load 
  const moreDiv = document.getElementById('loadMore');
- console.log('jhghgv')
+
  console.log(phonesx);
+
+ // Load more condition
  if (phonesx.data.slice(20).length !== 0) {
      const lengthofArr = phonesx.data.length;
      restPhone = phonesx.data.slice(21, lengthofArr);
@@ -109,11 +111,11 @@ const moreDetails =finderId=>{
     <div class="p-5">
         
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Band Name : ${finderId.name}</h5>
-            <div  class="flex space-x-12 ...">
-            <h6 class="mb-2 text-l  tracking-tight text-gray-900 ">Band : ${finderId.brand} </h6>
-            <p class="mb-2 tracking-tight text-gray-900 font-mono">${releaseInfo(finderId.releaseDate)} </p>
             
-            </div>
+            <h6 class="mb-2 text-l  tracking-tight text-gray-900 "><span class="font-bold">Band :</span class="font-bold"> ${finderId.brand} </h6>
+            <p><span class="font-bold">Release Date: </span> <span class="mb-2 tracking-tight text-gray-900 font-mono">${releaseInfo(finderId.releaseDate)}</span></p>
+            
+        
             <div class="bg-sky-200 p-6 ">
             <span class="font-bold">Main Feature: </span>
             <ul class="">
@@ -144,21 +146,7 @@ const moreDetails =finderId=>{
 
 }
 
-
-
-// else {
-//  moreDiv.textContent = '';
-//  resultDiv.textContent = '';
-//  noPhoneDiv.textContent = '';
-//  detailsDiv.textContent = '';
-//  morePhone.textContent ='';
-//  const div = document.createElement('div');
-//  div.innerHTML = `
-//  <div class="bg-red-700"><h1 class="text-center text-white font-bold text-3xl">No Phone Found</h1></div>
-//  `
-//  noPhoneDiv.appendChild(div);
-// }
-
+//release condition
 const releaseInfo = release =>{
     if(release==undefined || release== null || release.lenght == 0){
         return 'Release Date Not Found';
@@ -168,7 +156,7 @@ const releaseInfo = release =>{
     }
 }
 
-// loading rest of the phone 
+// loading more phone 
 const loadAll = restPhone => {
     const moreDiv = document.getElementById('loadMore');
     moreDiv.textContent = '';
