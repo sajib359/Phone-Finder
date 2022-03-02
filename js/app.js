@@ -82,6 +82,7 @@ const loadId = phoneId=>{
 const moreDetails =finderId=>{
     console.log(finderId);
     const detailsResult = document.getElementById('details');
+    detailsResult.textContent='';
     detailsResult.innerHTML=`<div class="max-w-xl bg-white rounded-lg border border-gray-200 shadow-md  mt-6">
     <a href="#">
         <img  class="rounded-t-lg mx-auto pt-6 " src="${finderId.image}" alt="" />
@@ -91,7 +92,7 @@ const moreDetails =finderId=>{
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Band Name : ${finderId.name}</h5>
             <div  class="flex space-x-12 ...">
             <h6 class="mb-2 text-l  tracking-tight text-gray-900 ">Band : ${finderId.brand} </h6>
-            <p class="mb-2   tracking-tight text-gray-900 font-mono">${finderId.releaseDate} </p>
+            <p class="mb-2 tracking-tight text-gray-900 font-mono">${releaseInfo(finderId.releaseDate)} </p>
             
             </div>
             <div class="bg-sky-200 p-6 ">
@@ -124,4 +125,14 @@ const moreDetails =finderId=>{
 
 }
 
+//release date condition
+
+const releaseInfo = release =>{
+    if(release==undefined || release== null || release.lenght == 0){
+        return 'Release Date Not Found';
+    }
+    else{
+        return release;
+    }
+}
 
