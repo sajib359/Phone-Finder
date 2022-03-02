@@ -5,29 +5,44 @@ const loadData = ()=>{
         const searchBtn = document.getElementById('search-input');
         const searchText = searchBtn.value;
         console.log(searchText);
+        //clear data
         searchBtn.value="";
 
+        if(searchText==0 || searchText==null || searchText==''){
+           alert("Please Enter your proper phone name or band ");
+        }
+       else{
+        //Load Data form input
         const url =`https://openapi.programming-hero.com/api/phones?search=${searchText}`
-
-    fetch(url)
-    .then(res=> res.json())
-    .then(data =>displaySearch(data.data.slice(0,20)))
+        fetch(url)
+        .then(res=> res.json())
+        .then(data =>displaySearch(data.data.slice(0,20)))
+       }
+    
 }
+//Displayed data Our site
+
 const displaySearch=phones=>{
     console.log(phones);
-    // for(let phone of phones){
-    //     console.log(phone);
-    // }
+
+// searching header code 
     const title = document.getElementById('search-title');
+    title.textContent='';
     const h2 = document.createElement('h2');
     h2.classList.add('result-title');
     h2.innerText='Your Searching Result are Displayed'
-
     title.appendChild(h2);
+    
+// displayed All Phone are you searching
+    
+    let searchDisplay = document.getElementById('display-searchResult');
+    searchDisplay.textContent='';
+     console.log(searchDisplay);
+
+   
     phones.forEach(phone => {
-        console.log(phone);
-        let searchDisplay = document.getElementById('display-searchResult');
-        console.log(searchDisplay);
+    console.log(phone);
+    
         
         const div = document.createElement('div');
         div.classList.add('phones')
@@ -51,10 +66,10 @@ const displaySearch=phones=>{
     </div>
 `;
 
-                        searchDisplay.appendChild(div);
+            searchDisplay.appendChild(div);
     });
 }
-
+// loading data using Id from API 
 const loadId = phoneId=>{
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
 
@@ -62,6 +77,7 @@ const loadId = phoneId=>{
     .then(res=>res.json())
     .then(data=>moreDetails(data.data))
 }
+// dispalyed Details Section 
 
 const moreDetails =finderId=>{
     console.log(finderId);
@@ -72,8 +88,8 @@ const moreDetails =finderId=>{
     </a>
     <div class="p-5">
         
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Band Name :${finderId.name}</h5>
-            <div  class="flex space-x-8 ...">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Band Name : ${finderId.name}</h5>
+            <div  class="flex space-x-12 ...">
             <h6 class="mb-2 text-l  tracking-tight text-gray-900 ">Band : ${finderId.brand} </h6>
             <p class="mb-2   tracking-tight text-gray-900 font-mono">${finderId.releaseDate} </p>
             
@@ -106,5 +122,6 @@ const moreDetails =finderId=>{
 </div>
 `;
 
-
 }
+
+
